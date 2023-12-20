@@ -1,0 +1,26 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-tables
+      author: test
+      changes:
+        - sql:
+            dbms: mysql
+            sql: >
+              CREATE TABLE a (
+                user_id BIGINT,
+                PRIMARY KEY (user_id)
+              );
+        - sql:
+            dbms: cassandra
+            sql: >
+              CREATE TABLE b (
+                user_id BIGINT,
+                PRIMARY KEY (user_id)
+              );
+      rollback:
+        - sql:
+            dbms: mysql
+            sql: DROP TABLE a
+        - sql:
+            dbms: cassandra
+            sql: DROP TABLE b
